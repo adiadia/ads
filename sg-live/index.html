@@ -705,48 +705,48 @@
     };
 
     async function loadStream() {
-      const params = new URLSearchParams(window.location.search);
-      const id = params.get("id");
+      // const params = new URLSearchParams(window.location.search);
+      // const id = params.get("id");
 
-      try {
-        const response = await fetch(JSON_URL + "?t=" + Date.now());
-        if (!response.ok) throw new Error("Fetch failed");
+      // try {
+      //   const response = await fetch(JSON_URL + "?t=" + Date.now());
+      //   if (!response.ok) throw new Error("Fetch failed");
         
-        const data = await response.json();
-        setupTabs(data); 
+      //   const data = await response.json();
+      //   setupTabs(data); 
 
-        if (!id) {
-          return;
-        }
+      //   if (!id) {
+      //     return;
+      //   }
 
-        let iframeSrc = "";
-        let channelTitle = id.replace(/[-_]/g, ' ').toUpperCase();
+      //   let iframeSrc = "";
+      //   let channelTitle = id.replace(/[-_]/g, ' ').toUpperCase();
 
-        if (data.iframes) {
-          const found = data.iframes.find(x => x.id === id);
-          if (found) {
-            iframeSrc = found.iframeSrc;
-            if (found.name || found.channel || found.title || found.channelName) {
-              channelTitle = found.name || found.channel || found.title || found.channelName;
-            }
-          }
-        } 
-        else if (data.channels && data.channels[id]) {
-          if (typeof data.channels[id] === 'object') {
-            iframeSrc = data.channels[id].iframeSrc || data.channels[id].link || data.channels[id].url;
-            channelTitle = data.channels[id].name || data.channels[id].channel || channelTitle;
-          } else {
-            iframeSrc = data.channels[id];
-          }
-        }
+      //   if (data.iframes) {
+      //     const found = data.iframes.find(x => x.id === id);
+      //     if (found) {
+      //       iframeSrc = found.iframeSrc;
+      //       if (found.name || found.channel || found.title || found.channelName) {
+      //         channelTitle = found.name || found.channel || found.title || found.channelName;
+      //       }
+      //     }
+      //   } 
+      //   else if (data.channels && data.channels[id]) {
+      //     if (typeof data.channels[id] === 'object') {
+      //       iframeSrc = data.channels[id].iframeSrc || data.channels[id].link || data.channels[id].url;
+      //       channelTitle = data.channels[id].name || data.channels[id].channel || channelTitle;
+      //     } else {
+      //       iframeSrc = data.channels[id];
+      //     }
+      //   }
 
-        if (!iframeSrc) {
-          showError("Channel stream not found.");
-          return;
-        }
+      //   if (!iframeSrc) {
+      //     showError("Channel stream not found.");
+      //     return;
+      //   }
 
-        document.getElementById('channel-name').innerText = channelTitle.toUpperCase();
-        document.getElementById('main-player').src = iframeSrc;
+        document.getElementById('channel-name').innerText = "Sony English";
+        document.getElementById('main-player').src = "https://cricket-yoddha.pages.dev/ios?url=https://dash-manifest-bridge.lovable.app/m3u8/proxy?url=https://wild-hat-3217.valverdeae7.workers.dev/ten1hd.m3u8";
         
       } catch (e) {
         showError("Failed to fetch stream details.");
